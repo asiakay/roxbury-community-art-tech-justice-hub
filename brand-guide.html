@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roxbury Tech Justice Hub | Brand Identity Guide</title>
-  <meta name="description" content="The Roxbury Tech Justice Hub visual identity guide for team members, interns, and partners.">
+  <meta name="description" content="The Roxbury Tech Justice Hub visual identity guide for admins, interns, and community partners.">
   <link rel="icon" href="favicon.png" type="image/png">
+
   <style>
     :root {
       --primary: #6A1B9A;
@@ -15,6 +16,7 @@
       --dark: #212121;
       --white: #ffffff;
     }
+
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background: var(--light);
@@ -23,22 +25,64 @@
       margin: 0;
       padding: 0;
     }
+
+    /* ===== NAV BAR ===== */
+    nav {
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+    }
+
+    nav .logo {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--secondary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--secondary);
+    }
+
+    /* ===== HEADER ===== */
     header {
       background: var(--primary);
       color: var(--white);
       padding: 2rem;
       text-align: center;
     }
+
     header h1 {
       margin: 0;
       font-size: 2.2rem;
       letter-spacing: 0.5px;
     }
+
     header p {
       font-size: 1.1rem;
       color: var(--secondary);
       font-weight: 500;
     }
+
+    /* ===== CONTENT ===== */
     .container {
       max-width: 900px;
       margin: 3rem auto;
@@ -47,16 +91,19 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       border-radius: 12px;
     }
+
     h2 {
       color: var(--primary);
       border-bottom: 2px solid var(--secondary);
       padding-bottom: .4rem;
     }
+
     .color-grid {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
     }
+
     .swatch {
       width: 140px;
       height: 80px;
@@ -68,22 +115,43 @@
       font-weight: 600;
       font-size: 0.9rem;
     }
+
     .swatch span {
       background: rgba(0,0,0,0.5);
       padding: .2rem .4rem;
       border-radius: 4px;
     }
+
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
       color: #555;
     }
+
     ul { margin-left: 1.2rem; }
     code { background: #eee; padding: 0.2rem 0.4rem; border-radius: 4px; }
+
+    @media (max-width: 700px) {
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <nav>
+    <div class="logo">Roxbury Tech</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="brand-guide.html">Brand Guide</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Partners</a></li>
+    </ul>
+  </nav>
 
   <header>
     <h1>Roxbury Tech Justice Hub</h1>

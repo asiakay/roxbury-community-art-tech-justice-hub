@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roxbury Community Learning Hub</title>
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --primary: #6a1b9a;    /* Roxbury purple */
+            --secondary: #ffc107;  /* Gold */
+            --accent: #26a69a;     /* Teal */
+            --dark: #212121;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* ===== TABS ===== */
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem 1rem;
+            background: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== RESOURCE GRID ===== */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .resource-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .resource-card p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .resource-card ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resource-card li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .resource-card a {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .resource-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ===== TAGS ===== */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .local-tag {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== FILTERS ===== */
+        .filters {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group h4 {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-option input {
+            margin-right: 0.5rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 80%;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Roxbury Community Learning Hub</h1>
+            <p class="subtitle">Free tech education + tools for local builders</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="learn">Learn to Code</button>
+            <button class="tab-button" data-tab="build">Build Tools</button>
+            <button class="tab-button" data-tab="connect">Local Impact</button>
+        </div>
+
+        <!-- Learn Tab -->
+        <div class="tab-content active" id="learn">
+            <div class="filters">
+                <div class="filter-group">
+                    <h4>Filter by Topic</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="learn-filter" value="beginner" checked> Beginner
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="learn-filter" value="python"> Python
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="learn-filter" value="web"> Web Dev
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="learn-filter" value="data"> Data Science
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <!-- Bootcamps -->
+                <div class="resource-card">
+                    <h3>💻 Full Stack Programs</h3>
+                    <ul>
+                        <li>
+                            <a href="https://100devs.org/about" target="_blank" rel="noopener">100Devs</a>
+                            <span>Free software engineering training</span>
+                            <div class="tags">
+                                <span class="tag">beginner</span>
+                                <span class="tag">web</span>
+                                <span class="tag local-tag">local</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://www.theodinproject.com/" target="_blank" rel="noopener">The Odin Project</a>
+                            <span>Open-source curriculum</span>
+                            <div class="tags">
+                                <span class="tag">beginner</span>
+                                <span class="tag">web</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener">freeCodeCamp</a>
+                            <span>Certification paths</span>
+                            <div class="tags">
+                                <span class="tag">beginner</span>
+                                <span class="tag">web</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Data Science -->
+                <div class="resource-card">
+                    <h3>📊 Data Science</h3>
+                    <ul>
+                        <li>
+                            <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Python Tutorial</a>
+                            <span>Official Python documentation</span>
+                            <div class="tags">
+                                <span class="tag">python</span>
+                                <span class="tag">beginner</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://developers.google.com/machine-learning/crash-course/prereqs-and-prework" target="_blank" rel="noopener">ML Crash Course</a>
+                            <span>Machine learning fundamentals</span>
+                            <div class="tags">
+                                <span class="tag">data</span>
+                                <span class="tag">intermediate</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Build Tab -->
+        <div class="tab-content" id="build">
+            <div class="resource-grid">
+                <!-- Dev Tools -->
+                <div class="resource-card">
+                    <h3>🛠️ Dev Tools</h3>
+                    <ul>
+                        <li>
+                            <a href="https://studio.firebase.google.com/" target="_blank" rel="noopener">Firebase Studio</a>
+                            <span>Database management</span>
+                            <div class="tags">
+                                <span class="tag">database</span>
+                            <span class="tag">intermediate</span>
+                            <span class="tag local-tag">local</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://shell.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Shell</a>
+                            <span>Browser-based terminal</span>
+                            <div class="tags">
+                                <span class="tag">cloud</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Creative Tools -->
+                <div class="resource-card">
+                    <h3>🎨 Creative Tools</h3>
+                    <ul>
+                        <li>
+                            <a href="https://p5js.org/" target="_blank" rel="noopener">p5.js</a>
+                            <span>Creative coding library</span>
+                            <div class="tags">
+                                <span class="tag">art</span>
+                                <span class="tag">javascript</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://www.figma.com/education/" target="_blank" rel="noopener">Figma Education</a>
+                            <span>Free design tool</span>
+                            <div class="tags">
+                                <span class="tag">design</span>
+                                <span class="tag">beginner</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect Tab -->
+        <div class="tab-content" id="connect">
+            <div class="resource-grid">
+                <!-- Boston Insights -->
+                <div class="resource-card">
+                    <h3>📊 Boston Insights</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.ujimaboston.com/study" target="_blank" rel="noopener">Ujima Study</a>
+                            <span>Black tech economy research</span>
+                            <div class="tags">
+                                <span class="tag">data</span>
+                                <span class="tag local-tag">local</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://groundedsolutions.org/tools-success/" target="_blank" rel="noopener">Grounded Solutions</a>
+                            <span>Housing justice tools</span>
+                            <div class="tags">
+                                <span class="tag">housing</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Black Tech Culture -->
+                <div class="resource-card">
+                    <h3>✊🏾 Black Tech Culture</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.hbcumade.app/" target="_blank" rel="noopener">HBCUmade App</a>
+                            <span>Showcase HBCU talent</span>
+                            <div class="tags">
+                                <span class="tag">community</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://www.blackcomputeher.org/" target="_blank" rel="noopener">BlackComputeHER</a>
+                            <span>Women in tech conference</span>
+                            <div class="tags">
+                                <span class="tag">women</span>
+                                <span class="tag local-tag">local</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Filter functionality for Learn tab
+            const learnFilters = document.querySelectorAll('input[name="learn-filter"]');
+            
+            learnFilters.forEach(filter => {
+                filter.addEventListener('change', filterLearnResources);
+            });
+            
+            function filterLearnResources() {
+                const selectedFilters = Array.from(learnFilters)
+                    .filter(filter => filter.checked)
+                    .map(filter => filter.value);
+                
+                // In a real implementation, this would filter the resources
+                console.log('Filters applied:', selectedFilters);
+            }
+            
+            // In a full implementation, you would:
+            // 1. Load resources from a JSON file
+            // 2. Dynamically generate the resource cards
+            // 3. Implement full filtering across all categories
+            // 4. Add search functionality
+        });
+    </script>
+</body>
+</html>

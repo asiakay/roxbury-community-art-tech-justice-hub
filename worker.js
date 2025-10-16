@@ -1,13 +1,8 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
+import { serveDir } from 'jsr:@std/http/file-server';
 
 export default {
   async fetch(request, env, ctx) {
-    try {
-      // Try to serve static asset from the bucket
-      return await getAssetFromKV({ request, waitUntil: ctx.waitUntil.bind(ctx) })
-    } catch (err) {
-      // If not found, return 404 page or fallback
-      return new Response('Not Found', { status: 404 })
-    }
+    // Serve static files from the current directory
+    return serveDir(request, { fsRoot: './' });
   },
-}
+};

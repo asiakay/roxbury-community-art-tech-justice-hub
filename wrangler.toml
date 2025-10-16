@@ -1,4 +1,6 @@
-name = "roxbury-community-art-tech-justice-hub"
+name = "roxbury-tech"
+main = "worker.js"
 compatibility_date = "2025-01-01"
 
-
+[assets]
+directory = "./"

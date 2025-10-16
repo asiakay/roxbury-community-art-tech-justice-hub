@@ -1,0 +1,5 @@
+name = "roxbury-community-art-tech-justice-hub"
+compatibility_date = "2025-01-01"
+
+[site]
+bucket = "./"

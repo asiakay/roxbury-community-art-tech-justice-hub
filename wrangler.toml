@@ -3,6 +3,6 @@ main = "worker.js"
 compatibility_date = "2025-10-24"
 
 [site]
-bucket = "./"        # you can change this if you later move files into /public
+# bucket = "./"        # you can change this if you later move files into /public
 binding = "ASSETS"
 

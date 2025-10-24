@@ -1,6 +1,11 @@
 name = "roxbury-tech"
 main = "worker.js"
-compatibility_date = "2025-01-01"
+compatibility_date = "2025-10-24"
 
-[assets]
-directory = "./"
+[site]
+bucket = "./"        # you can change this if you later move files into /public
+binding = "ASSETS"
+
+[[kv_namespaces]]
+binding = "DEEDS_KV"
+id = "f55e73c8a0814bc9b3eea9176548e1f5"   # or remove if this Worker doesn’t use KV

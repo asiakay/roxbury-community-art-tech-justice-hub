@@ -1,134 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roxbury Community Art & Tech Justice Hub Preview</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    }
+    nav.scrolled {
+      background-color: rgba(10, 20, 60, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 183, 179, 0.4);
+    }
+    nav a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #00B7B3;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #00B7B3;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
 
-  <title>Roxbury Tech Justice Hub | Art, Code, Community</title>
+      sections.forEach(section => observer.observe(section));
 
-  <!-- SEO -->
-  <meta name="description" content="The Roxbury Tech Justice Hub connects local artists, coders, and activists to build equitable, creative, and tech-driven solutions in Boston.">
-  <meta name="keywords" content="Roxbury, tech justice, art, Boston, community hub, Black creatives, digital equity, innovation, education, technology access">
-  <meta name="author" content="Roxbury Tech Justice Hub">
-  
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Roxbury Tech Justice Hub">
-  <meta property="og:description" content="Empowering Roxbury through art, code, and community innovation.">
-  <meta property="og:image" content="https://roxbury-tech.asialakaygrady-6d4.workers.dev/cover.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://roxbury-tech.asialakaygrady-6d4.workers.dev/">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Roxbury Tech Justice Hub">
-  <meta name="twitter:description" content="Building creative power through code, art, and community.">
-  <meta name="twitter:image" content="https://roxbury-tech.asialakaygrady-6d4.workers.dev/cover.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png">
-
-  <!-- STYLE --> 
-    <link rel="stylesheet" href="style.css">
-
-  
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
 </head>
+<body class="bg-[#0A143C] text-[#EFE7D8] font-inter">
+  <nav class="bg-[#0A143C]/80 backdrop-blur-md py-3 px-6 flex justify-center space-x-6 text-sm md:text-base" aria-label="Main navigation">
+    <a href="#about" class="text-[#EFE7D8]">About</a>
+    <a href="#projects" class="text-[#EFE7D8]">Projects</a>
+    <a href="#community" class="text-[#EFE7D8]">Community</a>
+    <a href="#local-impact" class="text-[#EFE7D8]">Local Impact</a>
+    <a href="#women-in-tech" class="text-[#EFE7D8]">Women in Tech</a>
+    <a href="#youth-innovation" class="text-[#EFE7D8]">Youth & Innovation</a>
+    <a href="#contact" class="text-[#EFE7D8]">Contact</a>
+  </nav>
 
-<body>
-  <header>
-    <h1>Roxbury Community Art & Tech Justice Hub</h1>
-    <p class="tagline">Building creative and technological equity through education, innovation, and collaboration.</p>
-  </header>
+  <section class="text-center py-20 px-4" id="home">
+    <h1 class="text-4xl md:text-6xl font-bold text-[#00B7B3] mb-4 mt-16">Roxbury Community Art & Tech Justice Hub</h1>
+    <p class="max-w-2xl mx-auto text-lg mb-8">Building creative and technological equity through education, innovation, and collaboration.</p>
+  </section>
 
-  <main>
-    <!-- CORE SKILLS -->
-    <section id="core-skills">
-      <h2>🧠 Core Skills</h2>
+  <section id="about" class="bg-[#EFE7D8] text-[#0A143C] py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">About</h2>
+      <p class="text-lg mb-4">Roxbury Tech Justice Hub develops open-source and cooperative tools that connect technology with social impact — from solar innovation and community data systems to digital equity and storytelling.</p>
+      <p class="text-sm uppercase tracking-wide text-[#FF1E8A]">Equity • Civic Tech • Clean Energy • Education • Cooperative Economics</p>
+    </div>
+  </section>
 
-      <section id="learn-to-code" class="content-section">
-        <h3>Learn to Code</h3>
-        <p>Free and community-driven resources for beginners and self-taught developers building their first projects.</p>
-        <ul>
-          <li><a href="https://www.freecodecamp.org" target="_blank" rel="noopener">freeCodeCamp</a> — Learn full-stack web development at your own pace.</li>
-          <li><a href="https://www.codecademy.com" target="_blank" rel="noopener">Codecademy</a> — Interactive coding courses in HTML, CSS, Python, and more.</li>
-          <li><a href="https://www.theodinproject.com" target="_blank" rel="noopener">The Odin Project</a> — Open-source curriculum focused on building real projects.</li>
-        </ul>
-      </section>
+  <section id="projects" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+          <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Solar Roots Co-op</h3>
+          <p class="text-sm mb-4">A cooperative model integrating solar energy, hempcrete manufacturing, and food access initiatives to build sustainable local economies.</p>
+          <a href="https://solarroots.org" target="_blank" class="text-[#00B7B3] hover:underline">Visit SolarRoots.org →</a>
+        </div>
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+          <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Deeds App</h3>
+          <p class="text-sm mb-4">A Cloudflare-based civic engagement platform tracking verified community service contributions through a transparent credit system.</p>
+          <a href="https://deeds-app.asialakaygrady-6d4.workers.dev" target="_blank" class="text-[#00B7B3] hover:underline">View Deeds App →</a>
+        </div>
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+          <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">B.R.I.D.G.E. Action Network</h3>
+          <p class="text-sm mb-4">A digital empowerment collective combating misinformation, advancing economic survival, and fostering narrative resistance.</p>
+          <a href="https://bridgeactionnetwork.org" target="_blank" class="text-[#00B7B3] hover:underline">Visit BridgeActionNetwork.org →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section id="build-tools" class="content-section">
-        <h3>Build Tools</h3>
-        <p>Explore tools that help you prototype, design, and ship creative tech faster.</p>
-        <ul>
-          <li><a href="https://glitch.com" target="_blank" rel="noopener">Glitch</a> — Build and remix web apps instantly.</li>
-          <li><a href="https://replit.com" target="_blank" rel="noopener">Replit</a> — Code, collaborate, and host directly from your browser.</li>
-          <li><a href="https://cloudflare.com" target="_blank" rel="noopener">Cloudflare Workers</a> — Deploy serverless apps on the edge.</li>
-        </ul>
-      </section>
-    </section>
+  <section id="community" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Community & Culture</h2>
+      <p class="max-w-2xl mx-auto mb-6">Programs and organizations driving tech equity and creative innovation across Boston.</p>
+    </div>
+  </section>
 
-    <!-- COMMUNITY & CULTURE -->
-    <section id="community-culture">
-      <h2>🌍 Community & Culture</h2>
+  <section id="local-impact" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-2xl font-semibold text-[#00B7B3] mb-4">Local Impact</h3>
+      <p class="mb-4">Highlighting partnerships with Roxbury Community College, local artists, and innovators strengthening creative and technological equity in Boston.</p>
+      <a href="https://rcc.mass.edu" target="_blank" class="text-[#00B7B3] hover:underline">Roxbury Community College →</a>
+    </div>
+  </section>
 
-      <section id="local-impact" class="content-section">
-        <h3>Local Impact</h3>
-        <p>Programs and organizations driving tech equity and creative innovation across Boston.</p>
-        <ul>
-          <li><strong>Roxbury Community College</strong> — A key hub for accessible education and community partnerships in STEM and the arts.  
-            <a href="https://rcc.mass.edu" target="_blank" rel="noopener">rcc.mass.edu</a>
-          </li>
-        </ul>
-      </section>
+  <section id="women-in-tech" class="bg-[#0A143C]/5 text-[#0A143C] py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-4">Women in Tech</h3>
+      <p class="mb-4">Celebrating and supporting women leaders advancing inclusive innovation — from grassroots movements to global impact initiatives.</p>
+      <div class="space-y-2">
+        <a href="https://createherfest.com" target="_blank" class="block text-[#00B7B3] hover:underline">CreateHER Fest →</a>
+        <a href="https://blackgirlscode.com" target="_blank" class="block text-[#00B7B3] hover:underline">Black Girls Code →</a>
+        <a href="https://womenwhocode.com/boston" target="_blank" class="block text-[#00B7B3] hover:underline">Women Who Code Boston →</a>
+        <a href="https://techtogether.io" target="_blank" class="block text-[#00B7B3] hover:underline">TechTogether Boston →</a>
+      </div>
+    </div>
+  </section>
 
-      <section id="women-in-tech" class="content-section">
-        <h3>Women in Tech</h3>
-        <p>Honoring innovators redefining what leadership and creativity look like in the digital age.</p>
-        <ul>
-          <li><strong>CreateHER Fest</strong> — Amplifying Black women creators at the intersection of art, tech, wellness, and entrepreneurship.  
-            <a href="https://www.createherfest.com" target="_blank" rel="noopener">createherfest.com</a>
-          </li>
-          <li><strong>Black Girls Code</strong> — Inspiring young Black girls to become leaders in STEM through coding workshops, mentorship, and real-world projects.  
-            <a href="https://www.blackgirlscode.com" target="_blank" rel="noopener">blackgirlscode.com</a>
-          </li>
-          <li><strong>Roxbury Community College Women’s STEM Program</strong> — Empowering women to pursue science, engineering, and technology careers that strengthen community impact.  
-            <a href="https://www.rcc.mass.edu" target="_blank" rel="noopener">rcc.mass.edu</a>
-          </li>
-          <li><strong>TechTogether Boston</strong> — Hosting inclusive hackathons and workshops for women and non-binary technologists across New England.  
-            <a href="https://www.techtogether.io" target="_blank" rel="noopener">techtogether.io</a>
-          </li>
-          <li><strong>Women Who Code Boston</strong> — Supporting women engineers through meetups, mentorship, and career resources.  
-            <a href="https://www.womenwhocode.com/boston" target="_blank" rel="noopener">womenwhocode.com/boston</a>
-          </li>
-        </ul>
-      </section>
+  <section id="youth-innovation" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-2xl font-semibold text-[#00B7B3] mb-4">Youth & Innovation</h3>
+      <p class="mb-4">Empowering emerging technologists and creators through mentorship, hackathons, and media arts programs that foster digital confidence and civic engagement.</p>
+      <div class="space-y-2">
+        <a href="https://thelooplab.org" target="_blank" class="block text-[#00B7B3] hover:underline">The Loop Lab →</a>
+        <a href="https://teenempowerment.org" target="_blank" class="block text-[#00B7B3] hover:underline">Teen Empowerment →</a>
+        <a href="https://meetup.com/black-tech-boston" target="_blank" class="block text-[#00B7B3] hover:underline">Black Tech Boston Meetup →</a>
+      </div>
+    </div>
+  </section>
 
-      <section id="youth-innovators" class="content-section">
-        <h3>Youth & Emerging Innovators</h3>
-        <p>Investing in the next generation of creators, thinkers, and civic technologists.</p>
-        <ul>
-          <li><strong>The Loop Lab</strong> — Providing media arts and technology training for youth of color in Greater Boston.  
-            <a href="https://www.thelooplab.org" target="_blank" rel="noopener">thelooplab.org</a>
-          </li>
-          <li><strong>Teen Empowerment</strong> — Developing youth leaders to create meaningful change through organizing and creative projects.  
-            <a href="https://teenempowerment.org" target="_blank" rel="noopener">teenempowerment.org</a>
-          </li>
-        </ul>
-      </section>
-
-      <section id="boston-insights" class="content-section">
-        <h3>Boston Insights & Black Tech Culture</h3>
-        <p>Where innovation meets heritage — exploring the pulse of Boston’s creative and Black tech ecosystems.</p>
-        <ul>
-          <li><strong>Black Tech Boston Meetup</strong> — A community for Black technologists, founders, and creatives building the future together.  
-            <a href="https://www.meetup.com/black-tech-boston" target="_blank" rel="noopener">meetup.com/black-tech-boston</a>
-          </li>
-        </ul>
-      </section>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Roxbury Community Art & Tech Justice Hub | Powered by Cloudflare Workers</p>
-  </footer>
+  <footer id="contact" class="bg-[#0A143C] text-center py-6 text-sm text-[#EFE7D8]/70" aria-label="Footer">
+    © 2025 Roxbury Community Art & Tech Justice Hub | Powered by Cloudflare Workers
+    <div class="text-center py-4">
+    <a href="https://github.com/asiaLakayGrady/roxbury-tech" target="_blank" class="text-[#00B7B3] hover:underline text-sm">View this project on GitHub →</a>
+  </div>
+</footer>
 </body>
-
 </html>

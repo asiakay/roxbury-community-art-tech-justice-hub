@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roxbury Community Art & Tech Justice Hub Preview</title>
-  <meta name="description" content="Roxbury Community Art & Tech Justice Hub — building creative and technological equity through education, innovation, and collaboration in Boston. Programs, events, and community-driven resources for learning, volunteering, and partnership." />
+  <title>Roxbury Community Art & Tech Justice Hub</title>
+  <meta name="description" content="Building creative and technological equity through education, innovation, and collaboration in Boston." />
   <meta name="theme-color" content="#0A143C" />
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Roxbury Community Art & Tech Justice Hub" />
@@ -24,44 +24,15 @@
     html {
       scroll-behavior: smooth;
     }
-    /* Skip link: hidden until focused */
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
-      width: auto;
-      height: auto;
-      padding: 0.5rem 0.75rem;
-      background: #00B7B3;
-      color: #0A143C;
-      z-index: 9999;
-      border-radius: 0.25rem;
-    }
-    section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
     nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      transition: background-color 0.5s ease, box-shadow 0.5s ease;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
     }
     nav.scrolled {
       background-color: rgba(10, 20, 60, 0.95);
-      box-shadow: 0 2px 10px rgba(0, 183, 179, 0.4);
+      box-shadow: 0 2px 10px rgba(0,183,179,0.4);
     }
     nav a {
       position: relative;
@@ -80,31 +51,16 @@
     nav a:hover::after {
       width: 100%;
     }
-    nav a:hover {
-      color: #00B7B3;
-    }
-    /* Hero gradient text */
     .hero-gradient {
       background: linear-gradient(90deg, #00B7B3 0%, #FF1E8A 100%);
       -webkit-background-clip: text;
-      background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
       color: transparent;
     }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.2 });
-
-      sections.forEach(section => observer.observe(section));
-
       const nav = document.querySelector('nav');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -117,100 +73,75 @@
   </script>
 </head>
 <body class="bg-[#0A143C] text-[#EFE7D8] font-inter">
-  <a href="#main" class="skip-link">Skip to content</a>
   <nav class="bg-[#0A143C]/80 backdrop-blur-md py-3 px-6 flex justify-center space-x-6 text-sm md:text-base" aria-label="Main navigation">
-    <a href="#about" class="text-[#EFE7D8]">About</a>
-    <a href="#projects" class="text-[#EFE7D8]">Projects</a>
-    <a href="#community" class="text-[#EFE7D8]">Community</a>
-    <a href="#local-impact" class="text-[#EFE7D8]">Local Impact</a>
-    <a href="#women-in-tech" class="text-[#EFE7D8]">Women in Tech</a>
-    <a href="#youth-innovation" class="text-[#EFE7D8]">Youth & Innovation</a>
-    <a href="#contact" class="text-[#EFE7D8]">Contact</a>
+    <a href="#about" class="text-[#EFE7D8] hover:text-[#00B7B3]">About</a>
+    <a href="#projects" class="text-[#EFE7D8] hover:text-[#00B7B3]">Projects</a>
+    <a href="#community" class="text-[#EFE7D8] hover:text-[#00B7B3]">Community</a>
+    <a href="#contact" class="text-[#EFE7D8] hover:text-[#00B7B3]">Contact</a>
   </nav>
 
-  <main id="main" role="main">
-  <section class="text-center py-20 px-4" id="home">
-  <h1 class="text-4xl md:text-6xl font-bold hero-gradient mb-4 mt-16">Roxbury Community Art & Tech Justice Hub</h1>
-    <p class="max-w-2xl mx-auto text-lg mb-8">Building creative and technological equity through education, innovation, and collaboration.</p>
-  </section>
+  <header id="home" class="text-center py-24 px-4">
+    <h1 class="text-5xl md:text-6xl font-bold hero-gradient mb-4">Roxbury Community Art & Tech Justice Hub</h1>
+    <p class="max-w-2xl mx-auto text-lg">Building creative and technological equity through education, innovation, and collaboration.</p>
+  </header>
 
   <section id="about" class="bg-[#EFE7D8] text-[#0A143C] py-16 px-6">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4">About</h2>
-      <p class="text-lg mb-4">Roxbury Tech Justice Hub develops open-source and cooperative tools that connect technology with social impact — from solar innovation and community data systems to digital equity and storytelling.</p>
-      <p class="text-sm uppercase tracking-wide text-[#FF1E8A]">Equity • Civic Tech • Clean Energy • Education • Cooperative Economics</p>
+      <p class="text-lg mb-4">We are a creative civic-tech lab based in Roxbury, MA — developing open-source and cooperative tools that connect technology with social impact. From solar innovation and digital equity to storytelling and economic resilience, we build bridges between art and engineering.</p>
+      <p class="text-sm uppercase tracking-wide text-[#FF1E8A]">Equity • Civic Tech • Clean Energy • Cooperative Economics</p>
     </div>
   </section>
 
-  <section id="projects" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
+  <section id="projects" class="bg-[#0A143C] text-[#EFE7D8] py-20 px-6">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Projects</h2>
+      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Featured Projects</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+        <div class="bg-[#EFE7D8]/10 p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
           <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Solar Roots Co-op</h3>
-          <p class="text-sm mb-4">A cooperative model integrating solar energy, hempcrete manufacturing, and food access initiatives to build sustainable local economies.</p>
-          <a href="https://solarroots.org" target="_blank" rel="noopener noreferrer" class="text-[#00B7B3] hover:underline">Visit SolarRoots.org →</a>
+          <p class="text-sm mb-4">A cooperative integrating solar energy, hempcrete manufacturing, and food access initiatives for sustainable local economies.</p>
+          <a href="https://solarroots.org" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Visit SolarRoots.org →</a>
         </div>
-        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+        <div class="bg-[#EFE7D8]/10 p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
           <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Deeds App</h3>
-          <p class="text-sm mb-4">A Cloudflare-based civic engagement platform tracking verified community service contributions through a transparent credit system.</p>
-          <a href="https://deeds-app.asialakaygrady-6d4.workers.dev" target="_blank" rel="noopener noreferrer" class="text-[#00B7B3] hover:underline">View Deeds App →</a>
+          <p class="text-sm mb-4">A civic engagement platform built with Cloudflare Workers that tracks verified community service through a transparent credit system.</p>
+          <a href="https://deeds-app.asialakaygrady-6d4.workers.dev" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Try the App →</a>
         </div>
-        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
+        <div class="bg-[#EFE7D8]/10 p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
           <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">B.R.I.D.G.E. Action Network</h3>
           <p class="text-sm mb-4">A digital empowerment collective combating misinformation, advancing economic survival, and fostering narrative resistance.</p>
-          <a href="https://bridgeactionnetwork.org" target="_blank" rel="noopener noreferrer" class="text-[#00B7B3] hover:underline">Visit BridgeActionNetwork.org →</a>
+          <a href="https://bridgeactionnetwork.org" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Explore Network →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="community" class="py-20 px-6">
+  <section id="community" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Community & Culture</h2>
-      <p class="max-w-2xl mx-auto mb-6">Programs and organizations driving tech equity and creative innovation across Boston.</p>
-    </div>
-  </section>
-
-  <section id="local-impact" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h3 class="text-2xl font-semibold text-[#00B7B3] mb-4">Local Impact</h3>
-      <p class="mb-4">Highlighting partnerships with Roxbury Community College, local artists, and innovators strengthening creative and technological equity in Boston.</p>
-      <a href="https://rcc.mass.edu" target="_blank" class="text-[#00B7B3] hover:underline">Roxbury Community College →</a>
-    </div>
-  </section>
-
-  <section id="women-in-tech" class="bg-[#0A143C]/5 text-[#0A143C] py-20 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-4">Women in Tech</h3>
-      <p class="mb-4">Celebrating and supporting women leaders advancing inclusive innovation — from grassroots movements to global impact initiatives.</p>
-      <div class="space-y-2">
-  <a href="https://createherfest.com" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">CreateHER Fest →</a>
-  <a href="https://blackgirlscode.com" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">Black Girls Code →</a>
-  <a href="https://womenwhocode.com/boston" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">Women Who Code Boston →</a>
-  <a href="https://techtogether.io" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">TechTogether Boston →</a>
+      <h2 class="text-3xl font-bold text-[#00B7B3] mb-6">Community & Open Source</h2>
+      <p class="max-w-3xl mx-auto mb-10">We promote open collaboration between technologists, artists, and community builders. Explore resources, governance models, and civic documents shaping transparent digital ecosystems.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">Git for Windows Governance Model</h3>
+          <a href="https://gitforwindows.org/governance-model.html" target="_blank" class="text-[#00B7B3] hover:underline">View Governance Model →</a>
+        </div>
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">Administrative False Claims Act</h3>
+          <a href="https://www.federalregister.gov/documents/2025/11/03/2025-19740/implementation-of-the-administrative-false-claims-act" target="_blank" class="text-[#00B7B3] hover:underline">Read Federal Register →</a>
+        </div>
+        <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">Roxbury Tech GitHub</h3>
+          <a href="https://github.com/asiaLakayGrady/roxbury-tech" target="_blank" class="text-[#00B7B3] hover:underline">Browse Repositories →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="youth-innovation" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h3 class="text-2xl font-semibold text-[#00B7B3] mb-4">Youth & Innovation</h3>
-      <p class="mb-4">Empowering emerging technologists and creators through mentorship, hackathons, and media arts programs that foster digital confidence and civic engagement.</p>
-      <div class="space-y-2">
-  <a href="https://thelooplab.org" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">The Loop Lab →</a>
-  <a href="https://teenempowerment.org" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">Teen Empowerment →</a>
-  <a href="https://meetup.com/black-tech-boston" target="_blank" rel="noopener noreferrer" class="block text-[#00B7B3] hover:underline">Black Tech Boston Meetup →</a>
-      </div>
-    </div>
-  </section>
-
-  </main>
-  <footer id="contact" class="bg-[#0A143C] text-center py-6 text-sm text-[#EFE7D8]/70" aria-label="Footer">
-    © 2025 Roxbury Community Art & Tech Justice Hub | Powered by Cloudflare Workers
-    <div class="text-center py-4">
-    <a href="https://github.com/asiakay/roxbury-community-art-tech-justice-hub" target="_blank" rel="noopener noreferrer" class="text-[#00B7B3] hover:underline text-sm">View this project on GitHub →</a>
-  </div>
-</footer>
+  <footer id="contact" class="bg-[#0A143C] text-center py-8 text-sm text-[#EFE7D8]/70">
+    <p>© 2025 Roxbury Community Art & Tech Justice Hub | Powered by Cloudflare Workers</p>
+    <p class="mt-2">
+      <a href="https://github.com/asiakay/roxbury-community-art-tech-justice-hub" target="_blank" class="text-[#00B7B3] hover:underline">View this project on GitHub →</a>
+    </p>
+  </footer>
 </body>
 </html>

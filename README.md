@@ -16,3 +16,12 @@ npx wrangler deploy
 ```
 Bucket: `./`
 Worker name: `roxbury-tech`
+
+## 🛠️ Local Development
+Use [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) to run the site locally while you iterate on HTML, CSS, or Worker updates.
+
+```bash
+npx wrangler dev
+```
+
+This command starts a local preview with live reload enabled. Any changes to `index.html`, `style.css`, or `worker.js` are automatically reflected in the browser, making it easy to test new layouts or worker logic before deploying.

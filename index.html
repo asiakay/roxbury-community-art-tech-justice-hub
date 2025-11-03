@@ -25,9 +25,6 @@
       scroll-behavior: smooth;
     }
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
       transition: background-color 0.4s ease, box-shadow 0.4s ease;
     }
     nav.scrolled {
@@ -73,17 +70,18 @@
   </script>
 </head>
 <body class="bg-[#0A143C] text-[#EFE7D8] font-inter">
-  <nav class="bg-[#0A143C]/80 backdrop-blur-md py-3 px-6 flex justify-center space-x-6 text-sm md:text-base" aria-label="Main navigation">
+  <nav class="sticky top-0 bg-[#0A143C]/80 backdrop-blur-md py-3 px-6 flex justify-center space-x-6 text-sm md:text-base" aria-label="Main navigation">
     <a href="#about" class="text-[#EFE7D8] hover:text-[#00B7B3]">About</a>
     <a href="#projects" class="text-[#EFE7D8] hover:text-[#00B7B3]">Projects</a>
     <a href="#community" class="text-[#EFE7D8] hover:text-[#00B7B3]">Community</a>
+    <a href="#hackathons" class="text-[#EFE7D8] hover:text-[#00B7B3]">Hackathons</a>
     <a href="#contact" class="text-[#EFE7D8] hover:text-[#00B7B3]">Contact</a>
   </nav>
 
-  <header id="home" class="text-center py-24 px-4">
+  <section id="home" class="text-center py-24 px-4">
     <h1 class="text-5xl md:text-6xl font-bold hero-gradient mb-4">Roxbury Community Art & Tech Justice Hub</h1>
-    <p class="max-w-2xl mx-auto text-lg">Building creative and technological equity through education, innovation, and collaboration.</p>
-  </header>
+    <p class="max-w-2xl mx-auto text-lg mb-8">Building creative and technological equity through education, innovation, and collaboration.</p>
+  </section>
 
   <section id="about" class="bg-[#EFE7D8] text-[#0A143C] py-16 px-6">
     <div class="max-w-4xl mx-auto text-center">
@@ -100,7 +98,7 @@
         <div class="bg-[#EFE7D8]/10 p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
           <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Solar Roots Co-op</h3>
           <p class="text-sm mb-4">A cooperative integrating solar energy, hempcrete manufacturing, and food access initiatives for sustainable local economies.</p>
-          <a href="https://solarroot.org" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Visit SolarRoot.org →</a>
+          <a href="https://solarroots.org" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Visit SolarRoots.org →</a>
         </div>
         <div class="bg-[#EFE7D8]/10 p-6 rounded-2xl hover:scale-105 transition-transform duration-300">
           <h3 class="text-2xl font-semibold text-[#FF1E8A] mb-2">Deeds App</h3>
@@ -131,7 +129,7 @@
         </div>
         <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-md">
           <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">Administrative False Claims Act</h3>
-          <a href="https://www.federalregister.gov/documents/2025/11/03/2025-19740/implementation-of-the-administrative-false-claims-act" target="_blank" class="text-[#00B7B3] hover:underline">Read Federal Register →</a>
+          <a href="https://www.federalregister.gov/documents/2025/11/03/2025-19740/implementation-of-the-administrative-false-claims-act" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">Read Federal Register →</a>
         </div>
         <div class="bg-[#0A143C]/5 p-6 rounded-2xl shadow-md">
           <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">Roxbury Tech GitHub</h3>
@@ -141,11 +139,43 @@
     </div>
   </section>
 
+  <section id="hackathons" class="bg-[#EFE7D8] text-[#0A143C] py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-[#00B7B3] mb-8">Upcoming Hackathons</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="hackathon-list"></div>
+    </div>
+  </section>
+
   <footer id="contact" class="bg-[#0A143C] text-center py-8 text-sm text-[#EFE7D8]/70">
     <p>© 2025 Roxbury Community Art & Tech Justice Hub | Powered by Cloudflare Workers</p>
     <p class="mt-2">
-      <a href="https://github.com/asiakay/roxbury-community-art-tech-justice-hub" target="_blank" class="text-[#00B7B3] hover:underline">View this project on GitHub →</a>
+      <a href="https://github.com/asiakay/roxbury-community-art-tech-justice-hub" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">View this project on GitHub →</a>
     </p>
   </footer>
+
+  <script>
+    const apiHackathons = [
+      { name: 'CreateHER Fest: Hack for Social Good', date: 'Nov 14-20, 2025', link: 'https://createherfest.devpost.com/' }
+    ];
+
+    const manualHackathons = [
+      { name: 'Civic Tech Boston Hack', date: 'Jan 17-19, 2026', link: 'https://example.com/civictechboston' },
+      { name: 'TechTogether Boston', date: 'Mar 7-9, 2026', link: 'https://techtogether.io' }
+    ];
+
+    const allHackathons = [...apiHackathons, ...manualHackathons];
+    const container = document.getElementById('hackathon-list');
+
+    allHackathons.forEach(event => {
+      const card = document.createElement('div');
+      card.className = 'bg-[#0A143C]/5 p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300';
+      card.innerHTML = `
+        <h3 class="text-xl font-semibold text-[#FF1E8A] mb-2">${event.name}</h3>
+        <p class="text-sm mb-4">${event.date}</p>
+        <a href="${event.link}" target="_blank" rel="noopener" class="text-[#00B7B3] hover:underline">View Details →</a>
+      `;
+      container.appendChild(card);
+    });
+  </script>
 </body>
 </html>

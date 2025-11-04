@@ -59,22 +59,11 @@
       color: transparent;
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const nav = document.querySelector('nav');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      });
-    });
-  </script>
 </head>
 <body class="bg-[#0A143C] text-[#EFE7D8] font-inter">
   <nav class="bg-[#0A143C]/80 backdrop-blur-md py-3 px-6 flex justify-center space-x-6 text-sm md:text-base" aria-label="Main navigation">
     <a href="#about" class="text-[#EFE7D8] hover:text-[#00B7B3]">About</a>
+    <a href="#resources" class="text-[#EFE7D8] hover:text-[#00B7B3]">Resources</a>
     <a href="#projects" class="text-[#EFE7D8] hover:text-[#00B7B3]">Projects</a>
     <a href="#community" class="text-[#EFE7D8] hover:text-[#00B7B3]">Community</a>
     <a href="#contact" class="text-[#EFE7D8] hover:text-[#00B7B3]">Contact</a>
@@ -90,6 +79,56 @@
       <h2 class="text-3xl font-bold mb-4">About</h2>
       <p class="text-lg mb-4">We are a creative civic-tech lab based in Roxbury, MA — developing open-source and cooperative tools that connect technology with social impact. From solar innovation and digital equity to storytelling and economic resilience, we build bridges between art and engineering.</p>
       <p class="text-sm uppercase tracking-wide text-[#FF1E8A]">Equity • Civic Tech • Clean Energy • Cooperative Economics</p>
+    </div>
+  </section>
+
+  <section id="resources" class="bg-[#0A143C] text-[#EFE7D8] py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#FF1E8A] mb-2">Resource Library</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#00B7B3]">Learn. Build. Organize.</h2>
+        <p class="mt-4 text-lg text-[#EFE7D8]/80">
+          Explore curated pathways sourced from a live KV or D1 dataset powering our Cloudflare Worker.
+        </p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3" role="list">
+        <article class="bg-[#EFE7D8]/10 rounded-2xl p-6 flex flex-col shadow-lg border border-[#00B7B3]/20" data-resource="learn">
+          <header class="mb-4">
+            <p class="text-xs uppercase tracking-widest text-[#FF1E8A]">Resource Type</p>
+            <h3 class="text-2xl font-semibold text-[#00B7B3]" data-role="title">Learning Pathways</h3>
+            <p class="text-xs text-[#EFE7D8]/60 mt-1">Updated <span data-role="updated">—</span></p>
+          </header>
+          <p class="text-sm text-[#EFE7D8]/80" data-role="description">
+            Articles, courses, and curriculum centering justice-forward technology education.
+          </p>
+          <p class="text-xs mt-3 text-[#EFE7D8]/70" data-role="status" aria-live="polite">Loading resources…</p>
+          <ul class="mt-4 space-y-4" data-role="items"></ul>
+        </article>
+        <article class="bg-[#EFE7D8]/10 rounded-2xl p-6 flex flex-col shadow-lg border border-[#00B7B3]/20" data-resource="build">
+          <header class="mb-4">
+            <p class="text-xs uppercase tracking-widest text-[#FF1E8A]">Resource Type</p>
+            <h3 class="text-2xl font-semibold text-[#00B7B3]" data-role="title">Build Projects</h3>
+            <p class="text-xs text-[#EFE7D8]/60 mt-1">Updated <span data-role="updated">—</span></p>
+          </header>
+          <p class="text-sm text-[#EFE7D8]/80" data-role="description">
+            Starter kits, templates, and infrastructure docs for cooperative technology builds.
+          </p>
+          <p class="text-xs mt-3 text-[#EFE7D8]/70" data-role="status" aria-live="polite">Loading resources…</p>
+          <ul class="mt-4 space-y-4" data-role="items"></ul>
+        </article>
+        <article class="bg-[#EFE7D8]/10 rounded-2xl p-6 flex flex-col shadow-lg border border-[#00B7B3]/20" data-resource="community">
+          <header class="mb-4">
+            <p class="text-xs uppercase tracking-widest text-[#FF1E8A]">Resource Type</p>
+            <h3 class="text-2xl font-semibold text-[#00B7B3]" data-role="title">Community Happenings</h3>
+            <p class="text-xs text-[#EFE7D8]/60 mt-1">Updated <span data-role="updated">—</span></p>
+          </header>
+          <p class="text-sm text-[#EFE7D8]/80" data-role="description">
+            Gatherings, meetups, and organizing spaces to stay connected and accountable.
+          </p>
+          <p class="text-xs mt-3 text-[#EFE7D8]/70" data-role="status" aria-live="polite">Loading resources…</p>
+          <ul class="mt-4 space-y-4" data-role="items"></ul>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -147,5 +186,111 @@
       <a href="https://github.com/asiakay/roxbury-community-art-tech-justice-hub" target="_blank" class="text-[#00B7B3] hover:underline">View this project on GitHub →</a>
     </p>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      const RESOURCE_ENDPOINTS = {
+        learn: '/api/resources/learn',
+        build: '/api/resources/build',
+        community: '/api/resources/community'
+      };
+
+      const formatDate = (isoString) => {
+        if (!isoString) return '—';
+        const parsed = new Date(isoString);
+        if (Number.isNaN(parsed.getTime())) return '—';
+        return parsed.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+      };
+
+      const renderItems = (container, items = []) => {
+        const list = container.querySelector('[data-role="items"]');
+        list.innerHTML = '';
+
+        if (!items.length) {
+          const emptyState = document.createElement('li');
+          emptyState.className = 'text-sm text-[#EFE7D8]/60';
+          emptyState.textContent = 'No resources available yet. Check back soon!';
+          list.appendChild(emptyState);
+          return;
+        }
+
+        for (const item of items) {
+          const listItem = document.createElement('li');
+          listItem.className = 'bg-[#0A143C]/40 rounded-xl p-4 border border-[#00B7B3]/10';
+
+          const title = document.createElement('h4');
+          title.className = 'text-lg font-semibold text-[#FF1E8A]';
+          title.textContent = item.title ?? 'Untitled resource';
+
+          const description = document.createElement('p');
+          description.className = 'text-sm text-[#EFE7D8]/80 mt-1';
+          description.textContent = item.description ?? 'More details coming soon.';
+
+          listItem.append(title, description);
+
+          if (item.format) {
+            const meta = document.createElement('p');
+            meta.className = 'text-xs uppercase tracking-wide text-[#00B7B3]/80 mt-3';
+            meta.textContent = `Format: ${item.format}`;
+            listItem.appendChild(meta);
+          }
+
+          if (item.url) {
+            const linkWrapper = document.createElement('p');
+            linkWrapper.className = 'mt-3';
+
+            const anchor = document.createElement('a');
+            anchor.href = item.url;
+            anchor.target = '_blank';
+            anchor.rel = 'noopener';
+            anchor.className = 'text-sm text-[#00B7B3] hover:underline';
+            anchor.textContent = 'Open resource →';
+            linkWrapper.appendChild(anchor);
+
+            listItem.appendChild(linkWrapper);
+          }
+
+          list.appendChild(listItem);
+        }
+      };
+
+      const loadResource = async (type) => {
+        const container = document.querySelector(`[data-resource="${type}"]`);
+        if (!container) return;
+
+        const status = container.querySelector('[data-role="status"]');
+
+        try {
+          status.textContent = 'Loading resources…';
+          const response = await fetch(RESOURCE_ENDPOINTS[type]);
+          if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+
+          const payload = await response.json();
+          status.textContent = '';
+
+          const title = container.querySelector('[data-role="title"]');
+          if (payload.title) title.textContent = payload.title;
+
+          const updated = container.querySelector('[data-role="updated"]');
+          updated.textContent = formatDate(payload.lastUpdated);
+
+          renderItems(container, payload.items);
+        } catch (error) {
+          console.error(`Unable to load ${type} resources`, error);
+          status.textContent = 'Unable to load resources right now. Please try again later.';
+        }
+      };
+
+      Object.keys(RESOURCE_ENDPOINTS).forEach(loadResource);
+    });
+  </script>
 </body>
 </html>

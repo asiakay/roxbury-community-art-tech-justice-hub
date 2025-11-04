@@ -5,3 +5,8 @@ compatibility_date = "2025-10-24"
 [assets]
 directory = "./"
 
+[[kv_namespaces]]
+binding = "RESOURCES"
+id = "<replace-with-production-id>"
+preview_id = "<replace-with-preview-id>"
+
